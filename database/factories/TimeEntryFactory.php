@@ -23,9 +23,9 @@ class TimeEntryFactory extends Factory
             'project_id' => Project::factory(),
             'task_id' => null, // タスクはシーダーで個別に設定
             'user_id' => User::factory(),
-            'date' => fake()->dateTimeBetween('-1 month', 'now'),
-            'hours' => fake()->randomFloat(2, 0.5, 8),
-            'description' => fake()->optional()->sentence(),
+            'date' => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'hours' => $this->faker->randomFloat(2, 0.5, 8),
+            'description' => $this->faker->optional()->sentence(),
         ];
     }
 }

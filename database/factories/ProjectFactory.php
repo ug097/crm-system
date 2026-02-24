@@ -17,15 +17,15 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
-        $startDate = fake()->dateTimeBetween('-1 month', '+1 month');
-        $endDate = fake()->dateTimeBetween($startDate, '+3 months');
+        $startDate = $this->faker->dateTimeBetween('-1 month', '+1 month');
+        $endDate = $this->faker->dateTimeBetween($startDate, '+3 months');
 
         return [
-            'name' => fake()->company() . 'プロジェクト',
-            'description' => fake()->optional()->paragraph(),
+            'name' => $this->faker->company() . 'プロジェクト',
+            'description' => $this->faker->optional()->paragraph(),
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'status' => fake()->randomElement(['planning', 'in_progress', 'on_hold', 'completed', 'cancelled']),
+            'status' => $this->faker->randomElement(['planning', 'in_progress', 'on_hold', 'completed', 'cancelled']),
             'created_by' => User::factory(),
         ];
     }
