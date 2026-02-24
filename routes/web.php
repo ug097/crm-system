@@ -36,7 +36,8 @@ Route::middleware('auth')->group(function () {
     
     // リソースルートは最後に定義
     Route::resource('projects', ProjectController::class);
-    Route::resource('tasks', TaskController::class)->except(['create']);
+    // create/store はプロジェクト配下で定義済みのため、resource から除外
+    Route::resource('tasks', TaskController::class)->except(['create', 'store']);
     
     // 管理者専用: ユーザー管理
     Route::middleware('admin')->group(function () {
