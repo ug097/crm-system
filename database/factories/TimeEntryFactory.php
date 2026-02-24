@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
+use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,13 +20,15 @@ class TimeEntryFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker ?? FakerFactory::create();
+
         return [
             'project_id' => Project::factory(),
             'task_id' => null, // タスクはシーダーで個別に設定
             'user_id' => User::factory(),
-            'date' => $this->faker->dateTimeBetween('-1 month', 'now'),
-            'hours' => $this->faker->randomFloat(2, 0.5, 8),
-            'description' => $this->faker->optional()->sentence(),
+            'date' => $faker->dateTimeBetween('-1 month', 'now'),
+            'hours' => $faker->randomFloat(2, 0.5, 8),
+            'description' => $faker->optional()->sentence(),
         ];
     }
 }
